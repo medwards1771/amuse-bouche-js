@@ -1,2 +1,2 @@
 # amuse-bouche-js
-playful app for The Muse, using JavaScript
+playful app for The Muse, version 2
