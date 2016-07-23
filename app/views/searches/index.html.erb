@@ -1,7 +1,9 @@
 <p>
   <%= link_to 'Previous Page', "/searches?page=#{params[:page].to_i - 1}" if params[:page] != "0" %>
-  <%= link_to 'Next Page', "/searches?page=#{params[:page].to_i + 1}" %>
+  <%= link_to 'Next Page', "/searches?page=#{params[:page].to_i + 1}" if params[:page].to_i <= @page_count %>
 </p>
+
+<h4>Your search returned <%="#{@page_count}"%> pages of results!</h4>
 
 <% @job_results.each do |job| %>
   <strong>Job Title: <%= job['name'] %></strong><br>
