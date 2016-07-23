@@ -1,0 +1,11 @@
+<p>
+  <%= link_to 'Previous Page', "/searches?page=#{params[:page].to_i - 1}" if params[:page] != "0" %>
+  <%= link_to 'Next Page', "/searches?page=#{params[:page].to_i + 1}" %>
+</p>
+
+<% @job_results.each do |job| %>
+  <strong>Job Title: <%= job['name'] %></strong><br>
+  <a href="<%= job['refs']['landing_page'] %>" target="_blank">View Position</a><br>
+  Company: <%= job['company']['name'] %><br>
+  <p></p>
+<% end %>

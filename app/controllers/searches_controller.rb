@@ -4,10 +4,17 @@ class SearchesController < ApplicationController
     @search = Search.new
   end
 
+  def index
+    results_hash = JobClient.new(flash[:search_params]).results(params[:page])
+    @page_count = results_hash[:page_count]
+    @job_results = results_hash[:job_results]
+    flash.keep(:search_params)
+  end
+
   def create
-    job_results = JobClient.new(search_params).results(0)
-    jobs_index = render_to_string 'job_results/index', locals: { jobs: job_results }
-    render html: jobs_index
+    flash[:search_params] = search_params
+    flash.keep(:search_params)
+    redirect_to '/searches?page=0'
   end
 
   private

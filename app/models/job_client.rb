@@ -6,7 +6,10 @@ class JobClient
   end
 
   def results(page)
-    connection.query('/jobs', page, params=query_params)['results'].flatten
+    response = connection.query('/jobs', page, params=query_params)
+    page_count = response['page_count']
+    job_results = response['results'].flatten
+    { page_count: page_count, job_results: job_results }
   end
 
   private
