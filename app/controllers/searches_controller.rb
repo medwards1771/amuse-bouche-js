@@ -6,7 +6,8 @@ class SearchesController < ApplicationController
 
   def index
     results_hash = JobClient.new(flash[:search_params]).results(params[:page])
-    @page_count = results_hash[:page_count]
+    flash.keep(:search_params)
+    @pages = results_hash[:page_count] - 1
     @job_results = results_hash[:job_results]
   end
 
