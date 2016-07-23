@@ -24,26 +24,26 @@ class JobClient
   end
 
   def company_params
-    companies = search_params[:companies] || []
+    companies = search_params['companies'] || []
     companies = replace_spaces(companies) if companies.select{ |company| company.include?(" ") }.present?
     companies.present? ? 'company=' + companies.join('&company=') : ""
   end
 
   def category_params
-    categories = search_params[:categories] || []
+    categories = search_params['categories'] || []
     categories = replace_ampersands(categories) if categories.select{ |category| category.include?("&") }.present?
     categories = replace_spaces(categories) if categories.select{ |category| category.include?(" ") }.present?
     categories.present? ? 'category=' + categories.join("&category=") : ""
   end
 
   def level_params
-    levels = search_params[:levels] || []
+    levels = search_params['levels'] || []
     levels = replace_spaces(levels) if levels.select{ |level| level.include?(" ") }.present?
     levels.present? ? 'level=' + levels.join("&level=") : ""
   end
 
   def location_params
-    locations = search_params[:locations] || []
+    locations = search_params['locations'] || []
     locations = replace_commas(locations) if locations.select{ |location| location.include?(",") }.present?
     locations = replace_spaces(locations) if locations.select{ |location| location.include?(" ") }.present?
     locations.present? ? 'location=' + locations.join("&location=") : ""
